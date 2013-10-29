@@ -1,0 +1,116 @@
+
+.DataTables_sort_icon
+{
+    display: inline;
+    margin: 0;
+    padding: 0;
+    float: right;
+}
+
+.dataTables_processing 
+{
+	position: absolute;
+    top: 10px;
+    left: -17px;
+    width: 16px;
+    height: 16px;
+    margin-right: 50px;
+	background-image: url(../../Images/ui-anim_basic_16x16.gif) 
+}
+
+.dataTables_filter 
+{
+	float: left;
+	text-align: right;
+    margin: 1px 20px 0 0;
+}
+
+.dataTables_filter input
+{
+    width: 150px;
+}
+
+.dataTables_info 
+{
+    float: left;
+    text-align: left;
+    margin-top: 5px;
+}
+
+.dataTables_paginate 
+{
+    float: right;
+    text-align: right;
+    margin-top: 8px;
+}
+
+.paginate_disabled_previous, .paginate_enabled_previous, .paginate_disabled_next, .paginate_enabled_next 
+{
+    float: left;
+	height: 19px;
+	width: 19px;
+	margin-left: 3px;
+}
+
+.dataTables_wrapper 
+{
+    position: relative;
+}
+
+.dataTables_wrapper th
+{
+    cursor: pointer;
+}
+
+.dataTables_wrapper tr.odd
+{
+     background-color: #EFEFEF;
+}
+
+.dataTables_wrapper tr.even
+{
+     background-color: #FDFDFD;
+}
+
+.dataTables_wrapper tr:hover
+{
+     background-color: #c3d8ea;
+}
+
+.paging_full_numbers .ui-button 
+{
+	padding: 2px 6px;
+	margin: 0;
+	cursor: pointer;
+}
+
+.dataTables_paginate .ui-button 
+{
+	margin-right: -1px !important;
+}
+
+.paging_full_numbers 
+{
+    margin: 0 !important;
+    padding-top: 2px;
+}
+
+.dataTables_length
+{
+    float: right;
+}
+
+.ui-widget-header
+{
+    padding: 5px;
+}
+
+.error-details_wrapper
+{
+    width: 100%;
+}
+
+#error-details_length
+{
+    position: absolute !important;
+}

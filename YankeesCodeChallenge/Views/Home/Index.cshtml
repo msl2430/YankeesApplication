@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<style type="text/css">
+    .player-headshot {
+        height: 75px;
+        margin: auto;
+    }
+</style>
+<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.8.2/jquery.dataTables.min.js"></script>
+
+<table id="player-summary-table">
+    <thead>
+        <th>HeadShot</th>
+        <th>Name</th>
+        <th>Number</th>
+        <th>Position</th>
+        <th>Team</th>
+        <th>League</th>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan="5" class="dataTables_empty" >Loading...</td>
+        </tr>
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    $("#player-summary-table").dataTable(
+        {
+            "bJQueryUI": true,
+            "bServerSide": true,
+            "bProcessing": true,
+            "iDisplayLength": 25,
+            "bAutoWidth": false,
+            "sAjaxSource": "@(Url.Content("~/Home/GetPlayerSummaryTable"))",
+            "bFilter": true,
+            "sPaginationType": "full_numbers",
+            //"sDom": '<"H"lpf<"clear">>rt<"F"ip<"clear">>',
+            //"aaSorting": [[1, "asc"], [3, "asc"], [4, "asc"], [5, "asc"]],
+            "aoColumnDefs":
+                [
+                    { "bSortable": false, "aTargets": [0, 2] },
+                    { "bSearchable": true, "aTargets": [1] }
+                ],
+            "aoColumns":
+                [
+                    { "sWidth": "10%" },
+                    { "sWidth": "35%" },
+                    { "sWidth": "5%" },
+                    { "sWidth": "10%" },
+                    { "sWidth": "20%" },
+                    { "sWidth": "20%" }
+                ],
+            "fnServerData": function (sSource, aoData, fnCallback) {
+                $.ajax(
+                    {
+                        type: 'POST',
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: 'json',
+                        url: sSource,
+                        data: "{'tableOptions':" + JSON.stringify(aoData) + " }",
+                        success: function (data) {
+                            fnCallback(JSON.parse(data));
+                            //$("#total-records").text("(" + JSON.parse(data).iTotalRecords + " total)");
+                        }
+                    });
+            },
+            "fnDrawCallback": function () {
+                @*$.each($("#missing-instance-report tr").filter(function (index) {
+                    return index != 0
+                }), function () {
+                    $(this).click(function (e) {
+                        var id = $(this).find("td").eq(0).find("label").attr('siteId');
+                        location.href = "@Url.Content("~/Ad/Digital/Administration/SiteInventoryManager?siteId=")" + id;
+                        });
+                    });*@
+            }
+        });//.fnSetFilteringDelay(400);
+</script>

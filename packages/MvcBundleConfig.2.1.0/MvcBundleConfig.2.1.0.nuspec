@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>MvcBundleConfig</id>
+    <version>2.1.0</version>
+    <title>MvcBundleConfig</title>
+    <authors>Tom DuPont</authors>
+    <owners>Tom DuPont</owners>
+    <projectUrl>https://github.com/tdupont750/MvcBundleConfig/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Configure MVC 4 Bundles in the Web.config</description>
+    <dependencies>
+      <group targetFramework=".NETFramework4.0">
+        <dependency id="Microsoft.AspNet.Web.Optimization" version="1.0.0" />
+        <dependency id="WebActivator" version="1.5.1" />
+      </group>
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Web" targetFramework=".NETFramework4.0.0.0" />
+      <frameworkAssembly assemblyName="System.Web.Mvc" targetFramework=".NETFramework4.0.0.0" />
+      <frameworkAssembly assemblyName="System.Web.WebPages" targetFramework=".NETFramework2.0.0.0" />
+    </frameworkAssemblies>
+  </metadata>
+</package>

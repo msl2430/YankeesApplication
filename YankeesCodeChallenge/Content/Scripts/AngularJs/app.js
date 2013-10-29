@@ -1,0 +1,1 @@
+﻿var YankeesApp = angular.module('YankeesCodeChallenge', []);
