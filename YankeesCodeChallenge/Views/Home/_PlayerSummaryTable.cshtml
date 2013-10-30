@@ -1,7 +1,4 @@
-﻿@{
-    ViewBag.Title = "Index";
-}
-<style type="text/css">
+﻿<style type="text/css">
     .player-headshot {
         height: 75px;
         margin: auto;
@@ -12,21 +9,16 @@
     .player-search-table-container {
         margin: 10px;
     }
-    #player-search-table tr {
-        cursor: pointer;
-    }
 </style>
 <link href="~/Content/Styles/Pluggins/datatables.css" rel="stylesheet" />
-<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.8.2/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.8.2/jquery.dataTables.min.js"></script>
 
-<div class="grid_2">&nbsp;</div>
 <div class="grid_10 player-search-table-container" ng-controller="PlayerSummaryCtrl">
-    <table id="player-search-table" jquery-Datatable 
+    <table jquery-Datatable 
            table-data-source="@(Url.Action("GetPlayerSummaryTable", "Home"))" 
            ao-columns = "columns"
            ao-column-Defs="columnDefs"
-           o-language="oLanguage"
-           callback-function="callbackFunction" >
+           o-language="oLanguage" >
         <thead>
             <th>&nbsp;</th>
             <th>Name</th>
@@ -53,14 +45,5 @@
             { "bSortable": false, "aTargets": [0, 2] },
             { "bSearchable": true, "aTargets": [1] }
         ];
-        $scope.callbackFunction = function () {
-            $.each($("#player-search-table tr").filter(function (index) {
-                return index != 0
-            }), function () {
-                $(this).click(function (e) {
-                    var id = $(this).find("td").eq(0).find("img").attr('data-playerId');
-                    location.href = "@Url.Action("PlayerBio", "Home")?playerId=" + id;});
-            });
-        };
     }
 </script>

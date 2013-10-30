@@ -8,19 +8,22 @@
         margin: auto;
     }
     .padding-cell-left {
-        padding-left: 10px;
+        padding-left: 7px;
+    }
+    .player-search-table-container {
+        margin: 10px;
     }
 </style>
 <link href="~/Content/Styles/Pluggins/datatables.css" rel="stylesheet" />
 <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.8.2/jquery.dataTables.min.js"></script>
 
-<div class="grid_10" ng-controller="PlayerSummaryCtrl">
+<div class="grid_10 player-search-table-container" ng-controller="PlayerSummaryCtrl">
     <table jquery-Datatable 
            table-data-source="@(Url.Action("GetPlayerSummaryTable", "Home"))" 
            ao-columns = "columns"
            ao-column-Defs="columnDefs" >
         <thead>
-            <th>HeadShot</th>
+            <th>&nbsp;</th>
             <th>Name</th>
             <th>Number</th>
             <th>Position</th>

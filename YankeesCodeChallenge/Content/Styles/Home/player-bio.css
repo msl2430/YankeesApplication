@@ -1,0 +1,27 @@
+﻿#player-bio-main-container {
+    margin: 5px;
+}
+.player-headshot {
+    height: 175px;
+}
+h2, h3 {
+    margin: 10px 0;
+}
+.team-label {
+    margin: 10px 0 5px !important;
+}
+.league-label {
+    margin: 0 0 27px;
+}
+p {
+    font-size: 1.1em;
+}
+.last-three-seasons-stat-container {
+    margin: 10px 33px;
+}
+.last-three-seasons-stat-table {
+    width: 100%;
+}
+.last-three-seasons-stat-table td {
+    text-align: right;
+}

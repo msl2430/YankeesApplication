@@ -4,7 +4,7 @@
     font-family: ubuntu;
     src: url('Fonts/UbuntuCondensed-Regular.ttf');
 }
-body, a, label {
+body, a, label, p, h1, h2, h3, h4 {
     font-family: ubuntu;
     letter-spacing: 1px;
 }
@@ -27,11 +27,22 @@ a:hover {
     color: #b3b0b0;
 }
 
-.main-content {
+#main-content, #header, #footer {
     width: 960px;
     margin: 0 auto;
-    padding: 0;
+    padding: 0;    
+}
+
+#main-content, #footer {
     background-color: #FEFEFE;
+}
+
+h2 {
+    font-size: 2.0em;
+}
+
+h3 {
+    font-size: 1.5em;
 }
 
 /*End generic styles*/
@@ -63,5 +74,21 @@ a:hover {
 }
 .left-align {
     text-align: left !important;
+}
+.normal-text {
+    font-weight: normal;
+    text-decoration: none;
+}
+.no-bottom-margin {
+    margin-bottom: 0;
+}
+.margin-left-min {
+    margin-left: 5px;
+}
+.margin-left-mid {
+    margin-left: 10px;
+}
+.margin-left-max {
+    margin-left: 15px;
 }
 /* End Declarative styles*/

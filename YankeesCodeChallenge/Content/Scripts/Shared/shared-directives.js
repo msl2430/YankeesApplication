@@ -7,7 +7,7 @@
                 "bProcessing": false,
                 "iDisplayLength": 10,
                 "bAutoWidth": false,
-                "bFilter": true,
+                "bFilter": true,                
                 "sAjaxSource": attrs.tableDataSource,
                 "sPaginationType": "full_numbers",
                 "fnServerData": function (sSource, aoData, fnCallback) {
@@ -22,7 +22,7 @@
                                 fnCallback(JSON.parse(data));
                             }
                         });
-                },
+                }                
             };
         
         // define columns
@@ -33,6 +33,14 @@
         // aoColumnDefs is dataTables way of providing fine control over column config
         if (attrs.aoColumnDefs) {
             options["aoColumnDefs"] = scope.$eval(attrs.aoColumnDefs);
+        }
+        
+        if (attrs.oLanguage) {
+            options["oLanguage"] = scope.$eval(attrs.oLanguage);
+        }
+
+        if (attrs.callbackFunction) {
+            options["fnDrawCallback"] = scope.$eval(attrs.callbackFunction);
         }
 
         // apply the plugin

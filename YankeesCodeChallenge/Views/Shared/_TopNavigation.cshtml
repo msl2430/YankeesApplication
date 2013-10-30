@@ -1,0 +1,12 @@
+﻿<link href="~/Content/Styles/Shared/header.css" rel="stylesheet" />
+
+<div id="menu" class="breadcrumbs">
+    <ul id="TopMenuLeft" class="breadcrumbs">
+        <li>@Html.ActionLink("Player Search", "Index", "Home")</li>
+        @if (ViewBag.PlayerBreadcrumb != null)
+        {
+            <li class="inactiveLink">@Html.Raw(ViewBag.PlayerBreadcrumb)</li>
+        }
+    </ul>
+    <div class="clear"></div>            
+</div>

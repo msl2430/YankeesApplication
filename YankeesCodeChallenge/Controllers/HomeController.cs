@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using YankeesCodeChallenge.Configuration.Helpers;
+using YankeesCodeChallenge.Models.Core;
 using YankeesCodeChallenge.Models.DataObjects;
 using YankeesCodeChallenge.Services;
 using YankeesCodeChallenge.ViewModels;
@@ -15,14 +16,19 @@ namespace YankeesCodeChallenge.Controllers
     {
         public ActionResult Index()
         {
-            //var test = NHibernateHelper.CurrentSession.QueryOver<PitchingStat>().Take(1).SingleOrDefault<PitchingStat>();
-            ViewBag.Name = "test";
             return View();
         }
 
-        public ActionResult Test()
+        public ActionResult PlayerBio(int? playerId)
         {
-            return View();
+            if (playerId == null)
+                return RedirectToAction("Index", "Home");
+
+            var player = PlayerService.Current.FindPlayerByPlayerId((int) playerId);
+            if (player == null)
+                return RedirectToAction("Index", "Home");
+            
+            return View(new PlayerSummary(player));
         }
 
         public JsonResult GetPlayerSummaryTable(List<aoData> tableOptions)

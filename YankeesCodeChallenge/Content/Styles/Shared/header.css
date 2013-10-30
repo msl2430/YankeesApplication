@@ -1,0 +1,51 @@
+﻿ul.breadcrumbs 
+{
+    position: relative;
+    padding: 5px 0px 0px 0px;
+    margin: 0;
+    text-align: left;
+    float: left;
+}
+
+ul.breadcrumbs li 
+{
+    display: inline;
+    list-style: none;
+    padding: 4px 2px 4px 2px;
+    line-height: 2em;
+	border-top: 5px solid #999999;
+    color: #222222;
+    font-family: arial;
+    font-size: 11px;
+    background-color: White;
+}
+
+ul.breadcrumbs li a 
+{
+    text-decoration: none;
+    color: #222222;
+}
+
+ul.breadcrumbs li.inactiveLink
+{
+	opacity:0.4;
+	filter:alpha(opacity=40); /* For IE8 and earlier */
+}
+
+ul.breadcrumbs li a:hover 
+{
+    text-decoration: none;
+}
+
+ul.breadcrumbs li a:active 
+{
+    text-decoration: none;
+}
+
+ul.breadcrumbs li.selected a 
+{
+    color: #000;
+}
+    
+#TopMenuLeft li { margin-right: 5px; }
+#right li { margin-left: 5px; }

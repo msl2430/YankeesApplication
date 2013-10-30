@@ -135,6 +135,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\PlayerBioController.cs" />
+    <Compile Include="Api\PlayerDetailedBattingStatController.cs" />
+    <Compile Include="Api\PlayerDetailedPitchingStatController.cs" />
     <Compile Include="Api\PlayerSummaryController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\NHibernateProfilerBootstrapper.cs" />
@@ -158,6 +161,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IPlayerService.cs" />
     <Compile Include="Services\PlayerService.cs" />
+    <Compile Include="ViewModels\BasicPlayerModel.cs" />
+    <Compile Include="ViewModels\PlayerBio.cs" />
+    <Compile Include="ViewModels\PlayerDetailedBattingStat.cs" />
+    <Compile Include="ViewModels\PlayerDetailedPitchingStat.cs" />
     <Compile Include="ViewModels\PlayerSummary.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -165,13 +172,19 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="App_Start\NHibernateProfilerBootstrapper.vb" />
+    <Content Include="Content\Images\ui-anim_basic_16x16.gif" />
     <Content Include="Content\Scripts\AngularJs\angular.min.js" />
     <Content Include="Content\Scripts\AngularJs\app.js" />
-    <Content Include="Content\Scripts\AngularJs\Shared\shared-directives.js" />
+    <Content Include="Content\Scripts\Home\player-bio-controllers.js" />
+    <Content Include="Content\Scripts\Home\player-bio-services.js" />
+    <Content Include="Content\Scripts\Shared\shared-directives.js" />
     <Content Include="Content\Scripts\jQueryUI\jquery-ui-1.10.3.custom.min.js" />
     <Content Include="Content\Scripts\jQuery\jquery-2.0.3.min.js" />
+    <Content Include="Content\Scripts\Home\player-bio.js" />
     <Content Include="Content\Scripts\Pluggins\jquery.dataTables.min.js" />
+    <Content Include="Content\Scripts\YankeesCodeChallenge.js" />
     <Content Include="Content\Styles\960_12_col.css" />
+    <Content Include="Content\Styles\Home\player-bio.css" />
     <Content Include="Content\Styles\jQueryUI\smoothness\images\animated-overlay.gif" />
     <Content Include="Content\Styles\jQueryUI\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\Styles\jQueryUI\smoothness\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -188,7 +201,9 @@
     <Content Include="Content\Styles\jQueryUI\smoothness\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Content\Styles\jQueryUI\smoothness\jquery-ui-1.10.3.custom.css" />
     <Content Include="Content\Styles\jQueryUI\smoothness\jquery-ui-1.10.3.custom.min.css" />
+    <Content Include="Content\Styles\Pluggins\datatables.css" />
     <Content Include="Content\Styles\Pluggins\jquery.dataTables.css" />
+    <Content Include="Content\Styles\Shared\header.css" />
     <Content Include="Content\Styles\site.css" />
     <Content Include="Global.asax" />
     <Content Include="Bundles.config" />
@@ -207,7 +222,9 @@
     <Content Include="Scripts\jquery-2.0.3.min.map" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\Test.cshtml" />
+    <Content Include="Views\Shared\_TopNavigation.cshtml" />
+    <Content Include="Views\Home\_PlayerSummaryTable.cshtml" />
+    <Content Include="Views\Home\PlayerBio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

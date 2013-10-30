@@ -27,23 +27,40 @@ namespace YankeesCodeChallenge.Configuration
             Left
         }
 
+        public enum PositionTypes
+        {
+            Unknown,
+            Pitcher,
+            Catcher,
+            FirstBase,
+            SecondBase,
+            ThirdBase,
+            Shortstop,
+            LeftField,
+            CenterField,
+            RightField,
+            DesignatedHitter,
+            StartingPitcher,
+            ReliefPitcher
+        }
+
         public static class Position
         {
             public static readonly IList<IdNamePair> Positions = new List<IdNamePair>()
                 {
-                    new IdNamePair(0, "Unknown"),
-                    new IdNamePair(1, "Pitcher"),
-                    new IdNamePair(2, "Catcher"),
-                    new IdNamePair(3, "First Base"),
-                    new IdNamePair(4, "Second Base"),
-                    new IdNamePair(5, "Third Base"),
-                    new IdNamePair(6, "Shortstop"),
-                    new IdNamePair(7, "Left Field"),
-                    new IdNamePair(8, "Center Field"),
-                    new IdNamePair(9, "Right Field"),
-                    new IdNamePair(10, "Designated Hitter"),
-                    new IdNamePair(11, "Starting Pitcher"),
-                    new IdNamePair(12, "Relief Pitcher")
+                    new IdNamePair((int)PositionTypes.Unknown, "Unknown"),
+                    new IdNamePair((int)PositionTypes.Pitcher, "Pitcher"),
+                    new IdNamePair((int)PositionTypes.Catcher, "Catcher"),
+                    new IdNamePair((int)PositionTypes.FirstBase, "First Base"),
+                    new IdNamePair((int)PositionTypes.SecondBase, "Second Base"),
+                    new IdNamePair((int)PositionTypes.ThirdBase, "Third Base"),
+                    new IdNamePair((int)PositionTypes.Shortstop, "Shortstop"),
+                    new IdNamePair((int)PositionTypes.LeftField, "Left Field"),
+                    new IdNamePair((int)PositionTypes.CenterField, "Center Field"),
+                    new IdNamePair((int)PositionTypes.RightField, "Right Field"),
+                    new IdNamePair((int)PositionTypes.DesignatedHitter, "Designated Hitter"),
+                    new IdNamePair((int)PositionTypes.StartingPitcher, "Starting Pitcher"),
+                    new IdNamePair((int)PositionTypes.ReliefPitcher, "Relief Pitcher")
                 };
         }
     }

@@ -13,8 +13,14 @@
         </script>
     </head>
     <body>
-        <div class="main-content container_12">
+        <div id="header" class="container_12">
+            @{ Html.RenderPartial("_TopNavigation"); }
+        </div>
+        <div id="main-content" class="container_12">
             @RenderBody()
+        </div>
+        <div id="footer" class="container_12">
+            <span class="right">Michael Levine</span>
         </div>
     </body>
 </html>
