@@ -1,0 +1,145 @@
+﻿@using YankeesCodeChallenge.Configuration
+@{
+    ViewBag.Title = string.Format("{0} - {1}", Model.FullName, Model.Team);
+    ViewBag.PageHeader = string.Format("{0} - {1}", Model.FullName, Model.Team); ;
+    Layout = "~/Views/Shared/_Layout.Mobile.cshtml";
+}
+<link href="~/Content/Styles/Home/player-bio.css" rel="stylesheet" />
+
+<div ng-controller="PlayerBioCtrl" class="ui-grid-a">
+    <section id="player-headshot-container" class="ui-block-a right-align">
+        <img ng-show="playerBio.HeadshotImage.length > 0" ng-src="{{playerBio.HeadshotImage}}" class="player-headshot">
+    </section>
+    <section id="player-bio-container" class="ui-block-b">
+        <h2>{{playerBio.FullName}}&nbsp;<span ng-show="playerBio.Number.indexOf('N/A') === -1" class="normal-text margin-left-min">#{{playerBio.Number}}</span>&nbsp;<span class="normal-text margin-left-min">{{playerBio.Position}}</span></h2>
+        <h3 class="team-label">{{playerBio.Team}}</h3>
+        <p class="league-label">{{playerBio.League}} League</p>
+        <p>
+            <strong>Birthdate:</strong> {{playerBio.BirthDate}}
+            <br/>
+            <strong>In:</strong> {{playerBio.BirthLocation}}
+        </p>
+        <p>
+            <strong>Height:</strong> {{playerBio.Height}}
+            <strong>Weight:</strong> {{playerBio.Weight}}
+        </p>
+        <p class="no-bottom-margin">
+            <strong>Bats:</strong> {{playerBio.Bats}}
+            <strong>Throws:</strong> {{playerBio.Throws}}
+        </p>
+    </section>
+</div>
+<div class="clear;"></div>
+<div class="ui-grid-solo last-three-seasons-header">
+    <h3>Last 3 Seasons</h3>
+</div>
+<section class="last-three-seasons-stat-container ui-grid-solo" style="overflow: auto;" ng-controller="LastThreeSeasonCtrl">
+    <span ng-show="isPitcher == false">
+        <table id="batting-table" class="last-three-seasons-stat-table">
+            <thead>
+                <th>Year</th>
+                <th>Games</th>
+                <th>At Bats</th>
+                <th>Hits</th>
+                <th>Strike Outs</th>
+                <th>Walks</th>
+                <th>Average</th>
+                <th>OBP</th>
+                <th>SLG</th>
+                <th>OPS</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="row in playerDetailedBattingStat">
+                    <td>{{row.Year}}</td>
+                    <td>{{row.Games}}</td>
+                    <td>{{row.AtBats}}</td>
+                    <td>{{row.Hits}}</td>
+                    <td>{{row.StrikeOuts}}</td>
+                    <td>{{row.Walks}}</td>
+                    <td>{{row.Average}}</td>
+                    <td>{{row.OBP}}</td>
+                    <td>{{row.SLG}}</td>
+                    <td>{{row.OPS}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </span>
+    <span ng-show="isPitcher == true">
+        <table id="pitching-table" class="last-three-seasons-stat-table">        
+            <thead>
+                <th>Year</th>
+                <th>Games</th>
+                <th>Games Started</th>
+                <th>Wins-Losses-Saves</th>
+                <th>Innings Pitched</th>
+                <th>Hits</th>
+                <th>Strike Outs</th>
+                <th>Walks</th>
+                <th>ERA</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="row in playerDetailedPitchingStat">
+                    <td>{{row.Year}}</td>
+                    <td>{{row.Games}}</td>
+                    <td>{{row.GamesStarted}}</td>
+                    <td>{{row.WinsLossesSaves}}</td>
+                    <td>{{row.InningsPitched}}</td>
+                    <td>{{row.Hits}}</td>
+                    <td>{{row.StrikeOuts}}</td>
+                    <td>{{row.Walks}}</td>
+                    <td>{{row.ERA}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </span>
+</section>
+
+<script type="text/javascript">
+    var isPitcher = ('@((Model.Position == Constants.Position.Positions.FirstOrDefault(p => p.Id == (int)Constants.PositionTypes.Pitcher).Name ||
+                       Model.Position == Constants.Position.Positions.FirstOrDefault(p => p.Id == (int)Constants.PositionTypes.StartingPitcher).Name ||
+                       Model.Position == Constants.Position.Positions.FirstOrDefault(p => p.Id == (int)Constants.PositionTypes.ReliefPitcher).Name))' === 'True');
+    $("#pitching-table").dataTable({
+        "bJQueryUI": false,
+        "bAutoWidth": false,
+        "bSort": false,
+        "bInfo": false,
+        "bFilter": false,
+        "bPaginate": false,
+        "oLanguage": { "sEmptyTable": "No statistics available" },
+        "aoColumns": [
+            { "sWidth": "10px" },
+            { "sWidth": "10px" },
+            { "sWidth": "10px" },
+            { "sWidth": "20px" },
+            { "sWidth": "10px" },
+            { "sWidth": "10px" },
+            { "sWidth": "10px" },
+            { "sWidth": "10px" },
+            { "sWidth": "10px" }
+        ]
+    });
+    $("#batting-table").dataTable({
+        "bJQueryUI": false,
+        "bAutoWidth": false,
+        "bSort": false,
+        "bInfo": false,
+        "bFilter": false,
+        "bPaginate": false,
+        "oLanguage": { "sEmptyTable": "No statistics available" },
+        "aoColumns": [
+            { "sWidth": "10px" },
+            { "sWidth": "10px" },
+            { "sWidth": "10px" },
+            { "sWidth": "10px" },
+            { "sWidth": "10px" },
+            { "sWidth": "10px" },
+            { "sWidth": "10px" },
+            { "sWidth": "10px" },
+            { "sWidth": "10px" },
+            { "sWidth": "10px" }
+        ]
+    });
+</script>
+@*<script src="~/Content/Scripts/Home/player-bio.js"></script>*@
+<script src="~/Content/Scripts/Home/player-bio-controllers.js"></script>
+<script src="~/Content/Scripts/Home/player-bio-services.js"></script>

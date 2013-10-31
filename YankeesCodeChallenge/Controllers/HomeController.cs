@@ -40,20 +40,36 @@ namespace YankeesCodeChallenge.Controllers
         [HttpPost]
         public JsonResult GetPlayerSummaryTable(List<aoData> tableOptions, string optionalFilter)
         {
-            var dataTableHelper = new DataTableHelper<PlayerSearchSummary>();
-            dataTableHelper.Initialize(tableOptions);
+            if (Request.Browser.IsMobileDevice)
+            {
+                var dataTableHelper = new DataTableHelper<PlayerSearchSummaryMobile>();
+                dataTableHelper.Initialize(tableOptions);
+                var results = PlayerService.Current.FindPlayerSummaryBySearchStringMobile(
+                    dataTableHelper.SearchKey,
+                    dataTableHelper.DisplayStart,
+                    dataTableHelper.DisplayLength,
+                    optionalFilter,
+                    dataTableHelper.SortColumnIndex,
+                    dataTableHelper.SortDirection);
 
-            var results = PlayerService.Current.FindPlayerSummaryBySearchString(
-                dataTableHelper.SearchKey,
-                dataTableHelper.DisplayStart,
-                dataTableHelper.DisplayLength,
-                optionalFilter,
-                dataTableHelper.SortColumnIndex,
-                dataTableHelper.SortDirection);
+                dataTableHelper.SetResults(results.Results.AsQueryable(), results.ResultCount, results.FilteredResultCount);
+                return Json(new JavaScriptSerializer().Serialize(dataTableHelper.Parse()));
+            }
+            else
+            {
+                var dataTableHelper = new DataTableHelper<PlayerSearchSummary>();
+                dataTableHelper.Initialize(tableOptions);
+                var results = PlayerService.Current.FindPlayerSummaryBySearchString(
+                    dataTableHelper.SearchKey,
+                    dataTableHelper.DisplayStart,
+                    dataTableHelper.DisplayLength,
+                    optionalFilter,
+                    dataTableHelper.SortColumnIndex,
+                    dataTableHelper.SortDirection);
 
-            dataTableHelper.SetResults(results.Results.AsQueryable(), results.ResultCount, results.FilteredResultCount);
-
-            return Json(new JavaScriptSerializer().Serialize(dataTableHelper.Parse()));
+                dataTableHelper.SetResults(results.Results.AsQueryable(), results.ResultCount, results.FilteredResultCount);
+                return Json(new JavaScriptSerializer().Serialize(dataTableHelper.Parse()));
+            }
         }
     }
 }

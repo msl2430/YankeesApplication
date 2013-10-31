@@ -4,26 +4,92 @@
     Layout = "~/Views/Shared/_Layout.Mobile.cshtml";
 }
 
-<table id="player-search-table" jquery-Datatable 
-        table-data-source="@(Url.Action("GetPlayerSummaryTable", "Home"))" 
-        optional-filter="teamIdList"
-        ao-columns = "columns"
-        ao-column-Defs="columnDefs"
-        o-language="oLanguage"
-        callback-function="callbackFunction" >
-    <thead>
-        <th>&nbsp;</th>
-        <th>Name</th>
-        <th>Number</th>
-        <th>Position</th>
-        <th>Team</th>
-        <th>League</th>
-    </thead>   
-</table>
+<style type="text/css">
+    .dataTables_filter
+    {
+        text-align: left !important;
+    }
+    .dataTables_filter input {
+        width: 100px !important;
+    }
+    .dataTables_length, .dataTables_wrapper td, .dataTables_info, .first, .next, .prev, .last, .fg-button {
+        font-size: 0.8em !important;
+    }
+    .player-headshot {
+        height: 40px;
+        margin: auto;
+    }
+    #player-search-table tr {
+        cursor: pointer;
+    }
+    .full-team-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .team-list-container {
+        width: 225px;
+        margin: 10px 0;
+    }
+    .league-header {
+        height: 15px;
+    }
+    .team-list {
+        list-style: none;
+        padding: 0 0 0 10px;
+        margin: 0;
+    }
+    .team-list li {
+        padding: 2px 0;
+    }
+    .list-footer {
+        display: block;
+    }
+</style>
+
+<a href="#teamSelectPopup" data-rel="popup" data-role="button" data-icon="grid">Filter By Team</a>
+<div data-role="popup" id="teamSelectPopup">    
+    <div class="team-list-container" data-role="listview" ng-controller="TeamListCtrl">
+        <div data-role="collapsible">
+            <h3>American League</h3>
+            <ul class="team-list" data-role="collapsible-set" ng-repeat="team in americanLeagueList">
+                <li><input type="checkbox" ng-value="team.TeamId"  ng-click="teamSelected(team.TeamId)" />{{team.Name}}</li>
+            </ul>
+        </div>
+        <div data-role="collapsible">
+            <h3>National League</h3>
+            <ul class="team-list" data-role="collapsible-set" ng-repeat="team in nationalLeagueList">
+                <li><input type="checkbox" ng-value="team.TeamId"  ng-click="teamSelected(team.TeamId)" />{{team.Name}}</li>
+            </ul>
+        </div>
+    </div>
+    <a id="close-team-popup" data-role="button" data-icon="delete">Close</a> 
+</div>
+<div class="player-search-table-container" ng-controller="PlayerSummaryCtrl">
+    <table id="player-search-table" jquery-Datatable 
+           table-data-source="@(Url.Action("GetPlayerSummaryTable", "Home"))" 
+           optional-filter="teamIdList"
+           ao-columns = "columns"
+           ao-column-Defs="columnDefs"
+           o-language="oLanguage"
+           callback-function="callbackFunction" >
+        <thead>
+            <th>&nbsp;</th>
+            <th>Name</th>
+            <th>#</th>
+            <th>Pos</th>
+            <th>Team</th>
+            <th>League</th>
+        </thead>   
+    </table>
+</div>
 
 <script src="~/Content/Scripts/Home/player-search-controllers.js"></script>
 <script src="~/Content/Scripts/Home/player-search-services.js"></script>
 <script type="text/javascript">
     var playerBioUrl = "@Url.Action("PlayerBio", "Home")";
     var teamIdList = new Array();
+    $("#close-team-popup").click(function() {
+        $("#teamSelectPopup").popup('close');
+    });
 </script>

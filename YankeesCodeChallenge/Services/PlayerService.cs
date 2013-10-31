@@ -22,8 +22,25 @@ namespace YankeesCodeChallenge.Services
         public ResultsWithCount<PlayerSearchSummary> FindPlayerSummaryBySearchString(string search, int start, int max, string teamIdFilterList, int sortColIndex = -1, string sortDirection = "") 
         {
             var playerResult = PlayerBySearchString(search, start, max, teamIdFilterList, sortColIndex, sortDirection);
-            
-            return playerResult;
+
+            return new ResultsWithCount<PlayerSearchSummary>()
+                {
+                    Results = playerResult.Results.ToList().Select(pr => new PlayerSearchSummary(pr)).ToList(),
+                    ResultCount = playerResult.ResultCount,
+                    FilteredResultCount = playerResult.FilteredResultCount
+                };
+        }
+
+        public ResultsWithCount<PlayerSearchSummaryMobile> FindPlayerSummaryBySearchStringMobile(string search, int start, int max, string teamIdFilterList, int sortColIndex = -1, string sortDirection = "")
+        {
+            var playerResult = PlayerBySearchString(search, start, max, teamIdFilterList, sortColIndex, sortDirection);
+
+            return new ResultsWithCount<PlayerSearchSummaryMobile>()
+            {
+                Results = playerResult.Results.ToList().Select(pr => new PlayerSearchSummaryMobile(pr)).ToList(),
+                ResultCount = playerResult.ResultCount,
+                FilteredResultCount = playerResult.FilteredResultCount
+            };
         }
 
         public IList<PlayerDetailedBattingStat> FindDetailedBattingStatistics(int playerId, int startYear, int endYear)
@@ -55,7 +72,7 @@ namespace YankeesCodeChallenge.Services
         }
 
         #region Data Access
-        protected ResultsWithCount<PlayerSearchSummary> PlayerBySearchString(string search, int start, int max, string teamIdFilterList, int sortColIndex = -1, string sortDirection = "")
+        protected ResultsWithCount<Player> PlayerBySearchString(string search, int start, int max, string teamIdFilterList, int sortColIndex = -1, string sortDirection = "")
         {
             Team team = null;
             var query = NHibernateHelper.CurrentSession.QueryOver<Player>().JoinAlias(p => p.Team, () => team);
@@ -129,9 +146,9 @@ namespace YankeesCodeChallenge.Services
             var multiResult = multiQuery.List();
             queryResult.Results = ((IList) multiResult[0]).Cast<Player>().ToList();
 
-            return new ResultsWithCount<PlayerSearchSummary>()
+            return new ResultsWithCount<Player>()
                 {
-                    Results = ((IList) multiResult[0]).Cast<Player>().Select(p => new PlayerSearchSummary(p)).ToList(),
+                    Results = ((IList) multiResult[0]).Cast<Player>().ToList(),
                     ResultCount = ((IList) multiResult[1]).Cast<int>().ElementAt(0),
                     FilteredResultCount = ((IList) multiResult[2]).Cast<int>().ElementAt(0)
                 };
