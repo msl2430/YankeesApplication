@@ -1,6 +1,6 @@
 ﻿YankeesApp.directive('jqueryDatatable', function () {
     return function (scope, element, attrs) {
-        // apply DataTable options, use defaults if none specified by user
+        // apply DataTable options, use defaults if none specified by user        
         var options = {
                 "bJQueryUI": true,
                 "bServerSide": true,
@@ -11,13 +11,16 @@
                 "sAjaxSource": attrs.tableDataSource,
                 "sPaginationType": "full_numbers",
                 "fnServerData": function (sSource, aoData, fnCallback) {
+                    var request = new Object();
+                    request.tableOptions = aoData;
+                    request.optionalFilter = scope.$eval(attrs.optionalFilter);
                     $.ajax(
                         {
                             type: 'POST',
                             contentType: 'application/json; charset=utf-8',
                             dataType: 'json',
                             url: sSource,
-                            data: "{'tableOptions':" + JSON.stringify(aoData) + " }",
+                            data: JSON.stringify(request),
                             success: function (data) {
                                 fnCallback(JSON.parse(data));
                             }

@@ -1,12 +1,11 @@
 ﻿@using YankeesCodeChallenge.Configuration
-@model YankeesCodeChallenge.ViewModels.PlayerSummary
+@model YankeesCodeChallenge.ViewModels.PlayerBioSummary
 @{
     ViewBag.Title = string.Format("{0} - {1}", Model.FullName, Model.Team);
     ViewBag.PlayerBreadcrumb = string.Format("<span>{0} - {1}</span>", Model.FullName, Model.Team);
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.8.2/jquery.dataTables.min.js"></script>
 <link href="~/Content/Styles/Home/player-bio.css" rel="stylesheet" />
 
 <div ng-controller="PlayerBioCtrl">

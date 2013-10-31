@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Player Search";
+    ViewBag.PageHeader = "Player Search";
+    Layout = "~/Views/Shared/_Layout.Mobile.cshtml";
+}
+
+<table id="player-search-table" jquery-Datatable 
+        table-data-source="@(Url.Action("GetPlayerSummaryTable", "Home"))" 
+        optional-filter="teamIdList"
+        ao-columns = "columns"
+        ao-column-Defs="columnDefs"
+        o-language="oLanguage"
+        callback-function="callbackFunction" >
+    <thead>
+        <th>&nbsp;</th>
+        <th>Name</th>
+        <th>Number</th>
+        <th>Position</th>
+        <th>Team</th>
+        <th>League</th>
+    </thead>   
+</table>
+
+<script src="~/Content/Scripts/Home/player-search-controllers.js"></script>
+<script src="~/Content/Scripts/Home/player-search-services.js"></script>
+<script type="text/javascript">
+    var playerBioUrl = "@Url.Action("PlayerBio", "Home")";
+    var teamIdList = new Array();
+</script>

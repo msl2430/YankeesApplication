@@ -29,7 +29,7 @@ ul.breadcrumbs li a
 ul.breadcrumbs li.inactiveLink
 {
 	opacity:0.4;
-	filter:alpha(opacity=40); /* For IE8 and earlier */
+	filter:alpha(opacity=80); /* For IE8 and earlier */
 }
 
 ul.breadcrumbs li a:hover 

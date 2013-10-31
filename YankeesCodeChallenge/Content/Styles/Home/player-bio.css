@@ -1,5 +1,5 @@
-﻿#player-bio-main-container {
-    margin: 5px;
+﻿#player-headshot-container, #player-bio-container {
+    margin-top: 10px;
 }
 .player-headshot {
     height: 175px;
@@ -24,4 +24,8 @@ p {
 }
 .last-three-seasons-stat-table td {
     text-align: right;
+}
+.dataTables_wrapper th
+{
+    cursor: default;
 }

@@ -48,19 +48,19 @@ namespace YankeesCodeChallenge.Configuration
         {
             public static readonly IList<IdNamePair> Positions = new List<IdNamePair>()
                 {
-                    new IdNamePair((int)PositionTypes.Unknown, "Unknown"),
-                    new IdNamePair((int)PositionTypes.Pitcher, "Pitcher"),
-                    new IdNamePair((int)PositionTypes.Catcher, "Catcher"),
-                    new IdNamePair((int)PositionTypes.FirstBase, "First Base"),
-                    new IdNamePair((int)PositionTypes.SecondBase, "Second Base"),
-                    new IdNamePair((int)PositionTypes.ThirdBase, "Third Base"),
-                    new IdNamePair((int)PositionTypes.Shortstop, "Shortstop"),
-                    new IdNamePair((int)PositionTypes.LeftField, "Left Field"),
-                    new IdNamePair((int)PositionTypes.CenterField, "Center Field"),
-                    new IdNamePair((int)PositionTypes.RightField, "Right Field"),
-                    new IdNamePair((int)PositionTypes.DesignatedHitter, "Designated Hitter"),
-                    new IdNamePair((int)PositionTypes.StartingPitcher, "Starting Pitcher"),
-                    new IdNamePair((int)PositionTypes.ReliefPitcher, "Relief Pitcher")
+                    new IdNamePair((int)PositionTypes.Unknown, "N/A"),
+                    new IdNamePair((int)PositionTypes.Pitcher, "P"),
+                    new IdNamePair((int)PositionTypes.Catcher, "C"),
+                    new IdNamePair((int)PositionTypes.FirstBase, "1B"),
+                    new IdNamePair((int)PositionTypes.SecondBase, "2B"),
+                    new IdNamePair((int)PositionTypes.ThirdBase, "3B"),
+                    new IdNamePair((int)PositionTypes.Shortstop, "SS"),
+                    new IdNamePair((int)PositionTypes.LeftField, "LF"),
+                    new IdNamePair((int)PositionTypes.CenterField, "CF"),
+                    new IdNamePair((int)PositionTypes.RightField, "RF"),
+                    new IdNamePair((int)PositionTypes.DesignatedHitter, "DH"),
+                    new IdNamePair((int)PositionTypes.StartingPitcher, "P"),
+                    new IdNamePair((int)PositionTypes.ReliefPitcher, "P")
                 };
         }
     }

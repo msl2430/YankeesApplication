@@ -31,12 +31,12 @@ namespace YankeesCodeChallenge.ViewModels
             Games = stat.Games;
             GamesStarted = stat.GamesStarted;
             WinsLossesSaves = string.Format("{0} - {1} - {2}", stat.Wins, stat.Losses, stat.Saves);
-            InningsPitched = ((stat.Outs/3.0) + (stat.Outs%3)/10.0).ToString("#.##");
+            InningsPitched = ((stat.Outs/3.0) + (stat.Outs%3)/10.0).ToString("0.00");
             Hits = stat.Singles + stat.Doubles + stat.Triples + stat.HomeRuns;
             StrikeOuts = stat.StrikeOuts;
             Outs = stat.Outs;
             Walks = stat.IntentionalWalks + stat.UnintentionalWalks;
-            ERA = ((stat.EarnedRuns*27.0)/Convert.ToDouble(stat.Outs)).ToString("#.##");
+            ERA = ((stat.EarnedRuns*27.0)/Convert.ToDouble(stat.Outs)).ToString("0.00");
         }
     }
 }

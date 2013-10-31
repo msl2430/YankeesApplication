@@ -1,0 +1,37 @@
+﻿.player-headshot {
+    height: 75px;
+    margin: auto;
+}
+.padding-cell-left {
+    padding-left: 7px;
+}
+.player-search-table-container {
+    margin: 10px;
+}
+#player-search-table tr {
+    cursor: pointer;
+}
+.full-team-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.team-list-container {
+    width: 225px;
+    /*border: solid 1px #555555;*/
+    margin: 10px 0;
+}
+.league-header {
+    height: 15px;
+}
+.team-list {
+    list-style: none;
+    padding: 0 0 0 10px;
+    margin: 0;
+}
+.team-list li {
+    padding: 2px 0;
+}
+.list-footer {
+    display: block;
+}

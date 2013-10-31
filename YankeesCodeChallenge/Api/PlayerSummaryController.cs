@@ -14,21 +14,23 @@ namespace YankeesCodeChallenge.Api
 {
     public class PlayerSummaryController : ApiController
     {
-        public HttpResponseMessage Post(List<aoData> tableOptions, string searchTerm)
+        [HttpPost]
+        public HttpResponseMessage Post(List<aoData> tableOptions, string optionalFilter)
         {
-            var dataTableHelper = new DataTableHelper<PlayerSummary>();
+            var dataTableHelper = new DataTableHelper<PlayerSearchSummary>();
             dataTableHelper.Initialize(tableOptions);
 
             var results = PlayerService.Current.FindPlayerSummaryBySearchString(
                 dataTableHelper.SearchKey,
                 dataTableHelper.DisplayStart,
                 dataTableHelper.DisplayLength,
+                optionalFilter,
                 dataTableHelper.SortColumnIndex,
                 dataTableHelper.SortDirection);
 
             dataTableHelper.SetResults(results.Results.AsQueryable(), results.ResultCount, results.FilteredResultCount);
 
-            return Request.CreateResponse(HttpStatusCode.OK, new JavaScriptSerializer().Serialize(dataTableHelper.Parse()));
+            return Request.CreateResponse(HttpStatusCode.OK, dataTableHelper.Parse());
         }
     }
 }

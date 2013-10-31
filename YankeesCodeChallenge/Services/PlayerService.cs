@@ -19,9 +19,9 @@ namespace YankeesCodeChallenge.Services
             get { return _service ?? (_service = new PlayerService()); }
         }
 
-        public ResultsWithCount<PlayerSummary> FindPlayerSummaryBySearchString(string search, int start, int max, int sortColIndex = -1, string sortDirection = "") 
+        public ResultsWithCount<PlayerSearchSummary> FindPlayerSummaryBySearchString(string search, int start, int max, string teamIdFilterList, int sortColIndex = -1, string sortDirection = "") 
         {
-            var playerResult = PlayerBySearchString(search, start, max, sortColIndex, sortDirection);
+            var playerResult = PlayerBySearchString(search, start, max, teamIdFilterList, sortColIndex, sortDirection);
             
             return playerResult;
         }
@@ -55,11 +55,11 @@ namespace YankeesCodeChallenge.Services
         }
 
         #region Data Access
-        protected ResultsWithCount<PlayerSummary> PlayerBySearchString(string search, int start, int max, int sortColIndex = -1, string sortDirection = "")
+        protected ResultsWithCount<PlayerSearchSummary> PlayerBySearchString(string search, int start, int max, string teamIdFilterList, int sortColIndex = -1, string sortDirection = "")
         {
             Team team = null;
             var query = NHibernateHelper.CurrentSession.QueryOver<Player>().JoinAlias(p => p.Team, () => team);
-            var queryFiltered = NHibernateHelper.CurrentSession.QueryOver<Player>().ToRowCountQuery();
+            var queryFiltered = NHibernateHelper.CurrentSession.QueryOver<Player>().ToRowCountQuery().JoinAlias(p => p.Team, () => team);
             var queryTotal = NHibernateHelper.CurrentSession.QueryOver<Player>().ToRowCountQuery();
             var queryResult = new ResultsWithCount<Player>();
 
@@ -75,6 +75,12 @@ namespace YankeesCodeChallenge.Services
                                             .Add(Restrictions.InsensitiveLike(Projections.Property<Player>(p => p.FirstName), st, MatchMode.Start))
                                             .Add(Restrictions.InsensitiveLike(Projections.Property<Player>(p => p.LastName), st, MatchMode.Start)));
                 }
+            }
+
+            if (!string.IsNullOrEmpty(teamIdFilterList))
+            {
+                query.WhereRestrictionOn(() => team.TeamId).IsIn(teamIdFilterList.Split(',').ToList());
+                queryFiltered.WhereRestrictionOn(() => team.TeamId).IsIn(teamIdFilterList.Split(',').ToList()); ;
             }
 
             if (sortDirection == "asc")
@@ -123,9 +129,9 @@ namespace YankeesCodeChallenge.Services
             var multiResult = multiQuery.List();
             queryResult.Results = ((IList) multiResult[0]).Cast<Player>().ToList();
 
-            return new ResultsWithCount<PlayerSummary>()
+            return new ResultsWithCount<PlayerSearchSummary>()
                 {
-                    Results = ((IList) multiResult[0]).Cast<Player>().Select(p => new PlayerSummary(p, p.PlayerId)).ToList(),
+                    Results = ((IList) multiResult[0]).Cast<Player>().Select(p => new PlayerSearchSummary(p)).ToList(),
                     ResultCount = ((IList) multiResult[1]).Cast<int>().ElementAt(0),
                     FilteredResultCount = ((IList) multiResult[2]).Cast<int>().ElementAt(0)
                 };

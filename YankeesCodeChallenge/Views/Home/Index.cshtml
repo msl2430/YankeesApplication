@@ -1,28 +1,28 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Player Search";
 }
-<style type="text/css">
-    .player-headshot {
-        height: 75px;
-        margin: auto;
-    }
-    .padding-cell-left {
-        padding-left: 7px;
-    }
-    .player-search-table-container {
-        margin: 10px;
-    }
-    #player-search-table tr {
-        cursor: pointer;
-    }
-</style>
-<link href="~/Content/Styles/Pluggins/datatables.css" rel="stylesheet" />
-<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.8.2/jquery.dataTables.min.js"></script>
 
-<div class="grid_2">&nbsp;</div>
-<div class="grid_10 player-search-table-container" ng-controller="PlayerSummaryCtrl">
+<link href="~/Content/Styles/Home/player-search.css" rel="stylesheet" />
+
+<div class="grid_3" >
+    <div class="team-list-container border-bottom" ng-controller="TeamListCtrl">
+        <ul class="full-team-list">
+            <li class="league-header ui-widget-header">American League</li>
+            <ul class="team-list" ng-repeat="team in americanLeagueList">
+                <li><input type="checkbox" ng-value="team.TeamId"  ng-click="teamSelected(team.TeamId)" />{{team.Name}}</li>
+            </ul>
+            <li class="league-header ui-widget-header">National League</li>
+            <ul class="team-list" ng-repeat="team in nationalLeagueList">
+                <li><input type="checkbox" ng-value="team.TeamId" ng-click="teamSelected(team.TeamId)" />{{team.Name}}</li>
+            </ul>
+            <li class="list-footer ui-widget-header"></li>
+        </ul>
+    </div>
+</div>
+<div class="grid_9 player-search-table-container" ng-controller="PlayerSummaryCtrl">
     <table id="player-search-table" jquery-Datatable 
            table-data-source="@(Url.Action("GetPlayerSummaryTable", "Home"))" 
+           optional-filter="teamIdList"
            ao-columns = "columns"
            ao-column-Defs="columnDefs"
            o-language="oLanguage"
@@ -38,29 +38,9 @@
     </table>
 </div>
 
+<script src="~/Content/Scripts/Home/player-search-controllers.js"></script>
+<script src="~/Content/Scripts/Home/player-search-services.js"></script>
 <script type="text/javascript">
-    function PlayerSummaryCtrl($scope) {
-        $scope.oLanguage = { sSearch: "Search by player name" };
-        $scope.columns = [
-            { "sWidth": "7%", "sClass": "center-align" },
-            { "sWidth": "35%", "sClass": "padding-cell-left" },
-            { "sWidth": "5%", "sClass": "center-align" },
-            { "sWidth": "13%", "sClass": "padding-cell-left" },
-            { "sWidth": "20%", "sClass": "padding-cell-left" },
-            { "sWidth": "20%", "sClass": "padding-cell-left" }
-        ];
-        $scope.columnDefs = [
-            { "bSortable": false, "aTargets": [0, 2] },
-            { "bSearchable": true, "aTargets": [1] }
-        ];
-        $scope.callbackFunction = function () {
-            $.each($("#player-search-table tr").filter(function (index) {
-                return index != 0
-            }), function () {
-                $(this).click(function (e) {
-                    var id = $(this).find("td").eq(0).find("img").attr('data-playerId');
-                    location.href = "@Url.Action("PlayerBio", "Home")?playerId=" + id;});
-            });
-        };
-    }
+    var playerBioUrl = "@Url.Action("PlayerBio", "Home")";
+    var teamIdList = new Array();
 </script>

@@ -36,10 +36,10 @@ namespace YankeesCodeChallenge.ViewModels
             Hits = stat.Singles + stat.Doubles + stat.Triples + stat.HomeRuns;
             StrikeOuts = stat.StrikeOuts;
             Walks = stat.IntentionalWalks + stat.UnintentionalWalks;
-            Average = (Convert.ToDouble(Hits) / Convert.ToDouble(stat.AtBats)).ToString(".###");
-            OBP = (Convert.ToDouble(Hits + Walks + stat.HitByPitches) / Convert.ToDouble(stat.AtBats + Walks + stat.HitByPitches + stat.SacrificeFlies)).ToString(".###");
-            SLG = (Convert.ToDouble(stat.Singles + (2 * stat.Doubles) + (3 * stat.Triples) + (4 * stat.HomeRuns)) / Convert.ToDouble(stat.AtBats)).ToString(".###");
-            OPS = (Convert.ToDouble(OBP) + Convert.ToDouble(SLG)).ToString(".###");
+            Average = (Convert.ToDouble(Hits) / Convert.ToDouble(stat.AtBats)).ToString(".000");
+            OBP = (Convert.ToDouble(Hits + Walks + stat.HitByPitches) / Convert.ToDouble(stat.AtBats + Walks + stat.HitByPitches + stat.SacrificeFlies)).ToString(".000");
+            SLG = (Convert.ToDouble(stat.Singles + (2 * stat.Doubles) + (3 * stat.Triples) + (4 * stat.HomeRuns)) / Convert.ToDouble(stat.AtBats)).ToString(".000");
+            OPS = (Convert.ToDouble(OBP) + Convert.ToDouble(SLG)).ToString(".000");
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿function PlayerBioCtrl($scope, $location, playerBioModel) {
-    $scope.playerBio = { HeadshotImage: "" };
     playerBioModel.getPlayerBioModel(parseQueryString()['playerId']).then(function (data) {
         $scope.playerBio = data;
     });

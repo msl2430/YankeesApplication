@@ -28,18 +28,26 @@ namespace YankeesCodeChallenge.Controllers
             if (player == null)
                 return RedirectToAction("Index", "Home");
             
-            return View(new PlayerSummary(player));
+            return View(new PlayerBioSummary(player));
         }
 
-        public JsonResult GetPlayerSummaryTable(List<aoData> tableOptions)
+        /// <summary>
+        /// Returns results for player table based on name filter, team filter, and sorting.
+        /// </summary>
+        /// <param name="tableOptions">jQuery Datatable parameters</param>
+        /// <param name="optionalFilter">Optional list of filtering Ids to apply to the query</param>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult GetPlayerSummaryTable(List<aoData> tableOptions, string optionalFilter)
         {
-            var dataTableHelper = new DataTableHelper<PlayerSummary>();
+            var dataTableHelper = new DataTableHelper<PlayerSearchSummary>();
             dataTableHelper.Initialize(tableOptions);
 
             var results = PlayerService.Current.FindPlayerSummaryBySearchString(
                 dataTableHelper.SearchKey,
                 dataTableHelper.DisplayStart,
                 dataTableHelper.DisplayLength,
+                optionalFilter,
                 dataTableHelper.SortColumnIndex,
                 dataTableHelper.SortDirection);
 

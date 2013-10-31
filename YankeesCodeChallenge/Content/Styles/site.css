@@ -37,6 +37,10 @@ a:hover {
     background-color: #FEFEFE;
 }
 
+#footer span {
+    margin-top: 25px;
+}
+
 h2 {
     font-size: 2.0em;
 }
@@ -82,13 +86,19 @@ h3 {
 .no-bottom-margin {
     margin-bottom: 0;
 }
-.margin-left-min {
+.inline-block {
+    display: inline-block;
+}
+.block {
+    display: block;
+}
+.margin-left-sm {
     margin-left: 5px;
 }
 .margin-left-mid {
     margin-left: 10px;
 }
-.margin-left-max {
+.margin-left-lg {
     margin-left: 15px;
 }
 /* End Declarative styles*/

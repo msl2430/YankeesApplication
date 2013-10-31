@@ -1,12 +1,13 @@
-﻿<!DOCTYPE html>
+﻿@using System.Web.Optimization
+<!DOCTYPE html>
 <html ng-app="YankeesCodeChallenge">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width" />
         <title>@ViewBag.Title</title>
 
-        @Html.CssBundle("~/Content/Styles/Bundles/default-style")
-        @Html.JsBundle("~/Content/Scripts/Bundles/default-scripts")
+        @Styles.Render("~/Content/Styles/Bundles/default-style")
+        @Scripts.Render("~/Content/Scripts/Bundles/default-scripts")
         
         <script type="text/javascript" language="javascript">
             var baseUrl = "@Url.Content("~/")";
