@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using YankeesCodeChallenge.Configuration;
 using YankeesCodeChallenge.Models.DataObjects;
 
 namespace YankeesCodeChallenge.ViewModels
 {
-    public class TeamDetail
+    public class TeamDetail : ITeamDetail
     {
         public int TeamId { get; set; }
 

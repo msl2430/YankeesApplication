@@ -16,7 +16,7 @@ h2, h3 {
 p {
     font-size: 1.1em;
 }
-.last-three-seasons-stat-container, .last-three-seasons-header {
+.last-three-seasons-stat-container {
     margin: 10px 33px;
 }
 .last-three-seasons-stat-table {
@@ -28,10 +28,4 @@ p {
 .dataTables_wrapper th
 {
     cursor: default;
-    background-color: #d0cfcf;
-    border-color: #d0cfcf;
-}
-
-.dataTables_wrapper th, .dataTables_wrapper td {
-    padding: 3px;
 }

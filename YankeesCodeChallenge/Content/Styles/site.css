@@ -92,6 +92,9 @@ h3 {
 .block {
     display: block;
 }
+.margin-top-sm {
+    margin-top: 5px;
+}
 .margin-left-sm {
     margin-left: 5px;
 }

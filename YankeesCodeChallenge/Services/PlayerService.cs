@@ -57,11 +57,11 @@ namespace YankeesCodeChallenge.Services
             return (pitchintStats != null && pitchintStats.Any()) ? pitchintStats.Select(ps => new PlayerDetailedPitchingStat(ps)).ToList() : new List<PlayerDetailedPitchingStat>();
         }
 
-        public PlayerBio FindPlayerBioByPlayerId(int playerId)
+        public PlayerBioDetailed FindPlayerBioByPlayerId(int playerId)
         {
             var player = PlayerByPlayerId(playerId);
 
-            return player != null ? new PlayerBio(player) : null;
+            return player != null ? new PlayerBioDetailed(player) : null;
         }
 
         public Player FindPlayerByPlayerId(int playerId)

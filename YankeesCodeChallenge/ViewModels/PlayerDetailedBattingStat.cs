@@ -3,43 +3,45 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using YankeesCodeChallenge.Models.DataObjects;
+using YankeesCodeChallenge.ViewModels.Helpers;
 
 namespace YankeesCodeChallenge.ViewModels
 {
     public class PlayerDetailedBattingStat
     {
-        public int Year { get; set; }
+        public int Year { get; internal set; }
 
-        public int Games { get; set; }
+        public int Games { get; internal set; }
 
-        public int AtBats { get; set; }
+        public int AtBats { get; internal set; }
 
-        public int Hits { get; set; }
+        public int Hits { get; internal set; }
 
-        public int StrikeOuts { get; set; }
+        public int StrikeOuts { get; internal set; }
 
-        public int Walks { get; set; }
+        public int Walks { get; internal set; }
 
-        public string Average { get; set; }
+        public string Average { get; internal set; }
 
-        public string OBP { get; set; }
+        public string OBP { get; internal set; }
 
-        public string SLG { get; set; }
+        public string SLG { get; internal set; }
 
-        public string OPS { get; set; }
+        public string OPS { get; internal set; }
 
         public PlayerDetailedBattingStat(BattingStat stat)
         {
-            Year = stat.YearId;
-            Games = stat.Games;
-            AtBats = stat.AtBats;
-            Hits = stat.Singles + stat.Doubles + stat.Triples + stat.HomeRuns;
-            StrikeOuts = stat.StrikeOuts;
-            Walks = stat.IntentionalWalks + stat.UnintentionalWalks;
-            Average = (Convert.ToDouble(Hits) / Convert.ToDouble(stat.AtBats)).ToString(".000");
-            OBP = (Convert.ToDouble(Hits + Walks + stat.HitByPitches) / Convert.ToDouble(stat.AtBats + Walks + stat.HitByPitches + stat.SacrificeFlies)).ToString(".000");
-            SLG = (Convert.ToDouble(stat.Singles + (2 * stat.Doubles) + (3 * stat.Triples) + (4 * stat.HomeRuns)) / Convert.ToDouble(stat.AtBats)).ToString(".000");
-            OPS = (Convert.ToDouble(OBP) + Convert.ToDouble(SLG)).ToString(".000");
+            var statHelper = new BattingStatModelHelper(stat);
+            Year = statHelper.Year;
+            Games = statHelper.Games;
+            AtBats = statHelper.AtBats;
+            Hits = statHelper.Hits;
+            StrikeOuts = statHelper.StrikeOuts;
+            Walks = statHelper.Walks;
+            Average = statHelper.Average;
+            OBP = statHelper.OBP;
+            SLG = statHelper.SLG;
+            OPS = statHelper.OPS;
         }
     }
 }

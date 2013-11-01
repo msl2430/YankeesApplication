@@ -1,4 +1,5 @@
 ﻿function PlayerSummaryCtrl($scope, teamIdListModal) {
+    $("#close-team-popup").click(function () { $("#teamSelectPopup").popup('close'); });
     $scope.oLanguage = { sSearch: "Search by player name" };
     $scope.columns = [
         { "sWidth": "7%",  "sClass": "center-align" },

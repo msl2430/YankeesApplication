@@ -21,7 +21,7 @@ namespace YankeesCodeChallenge
             bundles.Add(new ScriptBundle("~/Content/Scripts/Bundles/default-scripts")
                     .Include("~/Content/Scripts/jQuery/jquery-2.0.3.min.js",                             
                              "~/Content/Scripts/AngularJs/angular.min.js",
-                             "~/Content/Scripts/YankeesCodeChallenge.js",
+                             "~/Content/Scripts/site.js",
                              "~/Content/Scripts/AngularJs/app.js",
                              "~/Content/Scripts/Shared/shared-directives.js",
                              "~/Content/Scripts/Pluggins/jquery.dataTables.min.js"));

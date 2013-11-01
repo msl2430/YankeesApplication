@@ -1,5 +1,8 @@
-﻿namespace YankeesCodeChallenge.Models.Core
+﻿using System;
+
+namespace YankeesCodeChallenge.Models.Core
 {
+    [Serializable]
     public class IdNamePair
     {
         public int Id { get; set; }

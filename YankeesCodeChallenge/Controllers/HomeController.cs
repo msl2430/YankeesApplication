@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using YankeesCodeChallenge.Configuration.Helpers;
-using YankeesCodeChallenge.Models.Core;
-using YankeesCodeChallenge.Models.DataObjects;
 using YankeesCodeChallenge.Services;
 using YankeesCodeChallenge.ViewModels;
 
@@ -27,8 +23,8 @@ namespace YankeesCodeChallenge.Controllers
             var player = PlayerService.Current.FindPlayerByPlayerId((int) playerId);
             if (player == null)
                 return RedirectToAction("Index", "Home");
-            
-            return View(new PlayerBioSummary(player));
+             
+            return Request.Browser.IsMobileDevice ? View("PlayerBio.Mobile", new PlayerBioSummaryMobile(player)) : View("PlayerBio", new PlayerBioSummary(player));
         }
 
         /// <summary>

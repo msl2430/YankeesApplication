@@ -20,7 +20,7 @@
     </div>
 </div>
 <div class="grid_9 player-search-table-container" ng-controller="PlayerSummaryCtrl">
-    <table id="player-search-table" jquery-Datatable 
+    <table id="player-search-table" jquery-datatable-async
            table-data-source="@(Url.Action("GetPlayerSummaryTable", "Home"))" 
            optional-filter="teamIdList"
            ao-columns = "columns"

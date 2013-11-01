@@ -1,0 +1,55 @@
+﻿#player-headshot-container, #player-bio-container {
+    margin-top: 10px;
+}
+#player-headshot-container {
+    width: 33%;
+}
+#player-bio-container {
+    width: 66%;
+}
+.player-headshot {
+    height: 125px;
+    margin-right: 7px;
+}
+h2 {
+    font-size: 1.1em;
+}
+h3 {
+    font-size: 0.9em;
+}
+h2, h3 {
+    margin: 0;
+}
+.league-label {
+    margin: 0;
+}
+p {
+    font-size: 0.8em;
+    margin: 0;
+}
+.last-three-seasons-stat-table {
+    width: 100%;
+}
+.last-three-seasons-stat-table td {
+    text-align: right;
+}
+.dataTables_wrapper th
+{
+    cursor: default;
+    background-color: #d0cfcf;
+    border-color: #d0cfcf;
+    font-size: 0.8em;
+}
+
+.dataTables_wrapper th, .dataTables_wrapper td {
+    padding: 3px;        
+}
+.dataTables_wrapper td {
+    font-size: 0.6em;
+}
+.overflow-auto {
+    overflow: auto;
+}
+strong {
+    text-decoration: underline;
+}

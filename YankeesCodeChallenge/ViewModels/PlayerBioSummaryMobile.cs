@@ -3,12 +3,13 @@ using YankeesCodeChallenge.ViewModels.Helpers;
 
 namespace YankeesCodeChallenge.ViewModels
 {
-    public class PlayerSearchSummary : PlayerSearchModel
+    public class PlayerBioSummaryMobile : PlayerBioModel
     {
-        public PlayerSearchSummary(Player player)
+        public PlayerBioSummaryMobile(Player player)
         {
             var playerHelper = new PlayerModelHelper(player);
-            Initialize(playerHelper);          
+            Initialize(playerHelper);
+            Team = playerHelper.TeamAbbreviation;
         }
     }
 }

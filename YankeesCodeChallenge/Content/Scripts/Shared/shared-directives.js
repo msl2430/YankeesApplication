@@ -1,4 +1,4 @@
-﻿YankeesApp.directive('jqueryDatatable', function () {
+﻿YankeesApp.directive('jqueryDatatableAsync', function () {
     return function (scope, element, attrs) {
         // apply DataTable options, use defaults if none specified by user        
         var options = {

@@ -13,11 +13,15 @@
 
     <script type="text/javascript" language="javascript">
         var baseUrl = "@Url.Content("~/")";
-    </script>
+    </script> 
 </head>
 <body>
     <div data-role="page" id="@(ViewBag.PageId)" data-title="@(ViewBag.PageTitle)">
         <div data-role="header">
+            @if (Convert.ToBoolean(ViewBag.IncludeBackButton))
+            {
+                <a href="@(Url.Action("Index", "Home"))" rel="external"><span class="ui-icon ui-icon-arrow-l ui-icon-shadow"></span></a>
+            }
             <h1>@(ViewBag.PageHeader)</h1>
         </div>
         <div data-role="content">            
